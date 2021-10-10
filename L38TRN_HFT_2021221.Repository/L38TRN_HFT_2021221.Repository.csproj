@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\L38TRN_HFT_2021221.Data\L38TRN_HFT_2021221.Data.csproj" />
+    <ProjectReference Include="..\L38TRN_HFT_2021221.Models\L38TRN_HFT_2021221.Models.csproj" />
+  </ItemGroup>
+
 </Project>
