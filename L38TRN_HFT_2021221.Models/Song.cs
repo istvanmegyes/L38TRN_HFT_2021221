@@ -20,6 +20,5 @@ namespace L38TRN_HFT_2021221.Data
         public Album AlbumName { get; set; }
         public int Duration { get; set; }
 
-
     }
 }
