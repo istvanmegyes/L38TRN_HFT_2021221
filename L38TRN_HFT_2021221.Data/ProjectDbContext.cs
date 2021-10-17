@@ -34,6 +34,11 @@ namespace L38TRN_HFT_2021221.Data
             Artist kendrickLamar = new Artist() { ArtistID = 1, ArtistName = "Kendrik Lamar" };
             Album goodKid = new Album() { AlbumID = 1, AlbumName = "Good Kid, M.A.A.D City", ArtistName = kendrickLamar };
             Song backseatFreestlye = new Song() { SongID = 1, AlbumName = goodKid, ArtistName = kendrickLamar, Duration = 212};
+
+            modelBuilder.Entity<Album>().HasData(kendrickLamar);
+            modelBuilder.Entity<Artist>().HasData(goodKid);
+            modelBuilder.Entity<Song>().HasData(backseatFreestlye);
+
         }
     }
 }
