@@ -30,6 +30,10 @@ namespace L38TRN_HFT_2021221.Data
             modelBuilder.Entity<Album>(entity => entity.HasOne(artist => artist.ArtistName).WithMany(artist => artist.Albums).OnDelete(DeleteBehavior.SetNull));
             modelBuilder.Entity<Song>(entity => entity.HasOne(song => song.AlbumName).WithMany(album => album.Songs).OnDelete(DeleteBehavior.ClientSetNull));
             modelBuilder.Entity<Song>(entity => entity.HasOne(song => song.AlbumName).WithMany(artist => artist.Songs).OnDelete(DeleteBehavior.ClientSetNull));
+
+            Artist kendrickLamar = new Artist() { ArtistID = 1, ArtistName = "Kendrik Lamar" };
+            Album goodKid = new Album() { AlbumID = 1, AlbumName = "Good Kid, M.A.A.D City", ArtistName = kendrickLamar };
+            Song backseatFreestlye = new Song() { SongID = 1, AlbumName = goodKid, ArtistName = kendrickLamar, Duration = 212};
         }
     }
 }
