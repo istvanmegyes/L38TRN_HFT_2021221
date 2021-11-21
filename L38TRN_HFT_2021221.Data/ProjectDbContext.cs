@@ -42,7 +42,6 @@ namespace L38TRN_HFT_2021221.Data
             modelBuilder.Entity<Album>().HasData(kendrickLamar);
             modelBuilder.Entity<Artist>().HasData(goodKid);
             modelBuilder.Entity<Song>().HasData(backseatFreestlye); 
-
         }
     }
 }

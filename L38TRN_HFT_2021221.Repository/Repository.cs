@@ -10,9 +10,9 @@ namespace L38TRN_HFT_2021221.Repository
     public abstract class Repository<T> 
     {
         protected ProjectDbContext projectDbContext;
-        public Repository(ProjectDbContext projectDbContext)
+        public Repository(ProjectDbContext ProjectDbContext)
         {
-            this.projectDbContext = projectDbContext;
+            this.projectDbContext = ProjectDbContext;
         }
 
         public IQueryable<T> GetAll()

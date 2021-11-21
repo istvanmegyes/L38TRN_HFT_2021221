@@ -9,6 +9,10 @@ namespace L38TRN_HFT_2021221.Repository
 {
     public class AlbumRepository : Repository<Album>
     {
+        public AlbumRepository(ProjectDbContext projectDbContext) : base(projectDbContext)
+        {
+
+        }
         public override Album GetOne(int id)
         {
             throw new NotImplementedException();
@@ -41,7 +45,6 @@ namespace L38TRN_HFT_2021221.Repository
 
         public void UpdateAlbum(Album Album)
         {
-
 
             projectDbContext.SaveChanges();
         }

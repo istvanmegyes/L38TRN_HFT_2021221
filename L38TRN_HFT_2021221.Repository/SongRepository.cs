@@ -1,4 +1,5 @@
-﻿using System;
+﻿using L38TRN_HFT_2021221.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,43 +7,43 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Repository
 {
-    public class SongRepository
+    public class SongRepository : Repository<Song>
     {
-        public CommentRepository(DbContext ctx) : base(ctx) { }
+        public SongRepository(ProjectDbContext projectDbContext) : base(projectDbContext) { }
 
-        public override Comment GetOne(int id)
+        public override Song GetOne(int id)
         {
-            return GetAll().SingleOrDefault(x => x.CommentId == id);
+            return GetAll().SingleOrDefault(x => x.SongId == id);
         }
 
-        public void UpdateContent(int id, string newContent)
+        public void UpdateSongName(int id, string newSongName)
         {
-            var comment = GetOne(id);
-            comment.Content = newContent;
-            ctx.SaveChanges();
+            var Song = GetOne(id);
+            Song.SongName = newSongName;
+            projectDbContext.SaveChanges();
         }
 
-        public void AddNewComment(Comment comment)
+        public void AddNewSong(Song Song)
         {
-            ctx.Add(comment);
-            ctx.SaveChanges();
+            projectDbContext.Add(Song);
+            projectDbContext.SaveChanges();
         }
 
-        public void DeleteCommentById(int id)
+        public void DeleteSongById(int id)
         {
             var toDelete = GetOne(id);
-            ctx.Remove(toDelete);
-            ctx.SaveChanges();
+            projectDbContext.Remove(toDelete);
+            projectDbContext.SaveChanges();
         }
 
-        public void UpdateComment(Comment comment)
+        public void UpdateSong(Song Song)
         {
-            var toUpdate = GetOne(comment.CommentId);
+            var toUpdate = GetOne(Song.SongId);
 
-            toUpdate.Content = comment.Content;
+            toUpdate.Content = Song.Content;
             // etc. for additional properties
 
-            ctx.SaveChanges();
+            projectDbContext.SaveChanges();
         }
     }
 }

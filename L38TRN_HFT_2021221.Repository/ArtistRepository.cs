@@ -1,4 +1,5 @@
-﻿using System;
+﻿using L38TRN_HFT_2021221.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,43 +7,49 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Repository
 {
-    public class ArtistRepository
+    public class ArtistRepository : IRepository<Artist>
     {
-        public CommentRepository(DbContext ctx) : base(ctx) { }
+        public ArtistRepository(ProjectDbContext projectDbContext) : base(projectDbContext) { }
 
-        public override Comment GetOne(int id)
+        public override Artist GetOne(int id)
         {
-            return GetAll().SingleOrDefault(x => x.CommentId == id);
+            return GetAll().SingleOrDefault(x => x.ArtistID == id);
         }
 
-        public void UpdateContent(int id, string newContent)
+        public void UpdateArtistName(int id, string newName)
         {
-            var comment = GetOne(id);
-            comment.Content = newContent;
-            ctx.SaveChanges();
+            var Artist = GetOne(id);
+            Artist.ArtistName = newName;
+
+            projectDbContext.SaveChanges();
         }
 
-        public void AddNewComment(Comment comment)
+        public void AddNewArtist(Artist Artist)
         {
-            ctx.Add(comment);
-            ctx.SaveChanges();
+            projectDbContext.Add(Artist);
+            projectDbContext.SaveChanges();
         }
 
-        public void DeleteCommentById(int id)
+        public void DeleteArtistById(int id)
         {
             var toDelete = GetOne(id);
-            ctx.Remove(toDelete);
-            ctx.SaveChanges();
+            projectDbContext.Remove(toDelete);
+            projectDbContext.SaveChanges();
         }
 
-        public void UpdateComment(Comment comment)
+        public void UpdateArtist(Artist Artist)
         {
-            var toUpdate = GetOne(comment.CommentId);
+            var toUpdate = GetOne(Artist.ArtistID);
 
-            toUpdate.Content = comment.Content;
+            toUpdate.ArtistName = Artist.ArtistName;
             // etc. for additional properties
 
-            ctx.SaveChanges();
+            projectDbContext.SaveChanges();
+        }
+
+        public IQueryable<Artist> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }
