@@ -38,7 +38,7 @@ namespace L38TRN_HFT_2021221.Logic
             return artistRepo.GetAll().ToList();
         }
 
-        public void InsertCar(Artist artist)
+        public void InsertArtist(Artist artist)
         {
             artistRepo.CreateArtist(artist);
         }
