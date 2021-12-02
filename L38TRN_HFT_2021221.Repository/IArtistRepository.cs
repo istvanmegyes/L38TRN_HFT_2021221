@@ -9,13 +9,9 @@ namespace L38TRN_HFT_2021221.Repository
 {
     public interface IArtistRepository : IRepository<Artist>
     {
-        void CreateCar(Artist artist);
-
-        // update
-        void UpdatePrice(int id, int newPrice);
-        void UpdateName(int id, string newName);
-
-        // delete
-        void Deletecar(int id);
+        void Create(Artist artist);
+        void UpdateArtistNationality(int id, string newName);
+        void UpdateArtistName(int id, string newName);
+        void DeleteArtist(int id);
     }
 }

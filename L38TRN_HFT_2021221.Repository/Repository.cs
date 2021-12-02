@@ -1,4 +1,5 @@
 ﻿using L38TRN_HFT_2021221.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Repository
 {
-    public abstract class Repository<T> 
+    public abstract class Repository<T> : IRepository<T> where T : class
     {
         protected ProjectDbContext projectDbContext;
         public Repository(ProjectDbContext ProjectDbContext)
@@ -17,7 +18,7 @@ namespace L38TRN_HFT_2021221.Repository
 
         public IQueryable<T> GetAll()
         {
-            return projectDbContext.Set<T>(); // set => halmaz; != beállítás
+            return projectDbContext.Set<T>();
         }
 
         public abstract T GetOne(int id);

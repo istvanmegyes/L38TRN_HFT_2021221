@@ -10,5 +10,6 @@ namespace L38TRN_HFT_2021221.Repository
     {
         T GetOne(int id);
         IQueryable<T> GetAll();
+
     }
 }

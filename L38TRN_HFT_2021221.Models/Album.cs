@@ -14,11 +14,13 @@ namespace L38TRN_HFT_2021221.Data
         [Key]
         public int AlbumID { get; set; }
         public string AlbumName { get; set; }
+        public double Price { get; set; }
+
         [ForeignKey(nameof(Artist))]
-        public Artist ArtistName { get; set; }
+        public int ArtistID { get; set; }
 
         [NotMapped]
-        public string AllData => $"";
+        public virtual Artist Artist { get; set; }
 
         public virtual ICollection<Song> Songs { get; set; }
 
