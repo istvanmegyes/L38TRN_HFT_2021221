@@ -1,14 +1,18 @@
 ﻿using L38TRN_HFT_2021221.Data;
+using L38TRN_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace L38TRN_HFT_2021221.Logic
 {
     public class AlbumLogic
     {
+        IAlbumRepository albumRepo;
+
         public void ChangeAlbumName(int id, string newName)
         {
-            albumRepo.ChangeAlbumName(id, newName);
+            albumRepo.UpdateAlbumName(id, newName);
         }
 
         public Album GetOneArtist(int id)
@@ -21,14 +25,14 @@ namespace L38TRN_HFT_2021221.Logic
             return albumRepo.GetAll().ToList();
         }
 
-        public void InsertAlbum(Album album)
+        public void CreateNewAlbum(Album album)
         {
-            albumRepo.CreateAlbum(album);
+            albumRepo.Create(album);
         }
 
         public void DeleteAlbumById(int id)
         {
-            albumRepo.DeleteAlbumById(id);
+            albumRepo.DeleteAlbum(id);
         }
     }
 }

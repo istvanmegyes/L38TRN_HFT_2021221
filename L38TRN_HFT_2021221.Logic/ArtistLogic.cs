@@ -1,4 +1,5 @@
 ﻿using L38TRN_HFT_2021221.Data;
+using L38TRN_HFT_2021221.Logic;
 using L38TRN_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Logic
 {
-    public class ArtistLogic
+    public class ArtistLogic : IArtistLogic
     {
         IArtistRepository artistRepo;
         public ArtistLogic()
@@ -20,8 +21,6 @@ namespace L38TRN_HFT_2021221.Logic
         {
             this.artistRepo = repo;
         }
-
-        // --------------------------------------------------------------------------------------------------------
 
         public void ChangeArtistName(int id, string newName)
         {
@@ -38,14 +37,44 @@ namespace L38TRN_HFT_2021221.Logic
             return artistRepo.GetAll().ToList();
         }
 
-        public void InsertArtist(Artist artist)
+        public void CreateNewArtist(Artist artist)
         {
-            artistRepo.CreateArtist(artist);
+            artistRepo.Create(artist);
         }
 
         public void DeleteArtistById(int id)
         {
-            artistRepo.DeleteArtistById(id);
+            artistRepo.DeleteArtist(id);
+        }
+
+        public void Create(Artist artist)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Artist Read(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Artist artist)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Artist> ReadAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValuePair<string, Album>> AVGAlbumsByArtist()
+        {
+            throw new NotImplementedException();
         }
     }
 }
