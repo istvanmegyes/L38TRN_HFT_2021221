@@ -1,5 +1,4 @@
-﻿using L38TRN_HFT_2021221.Data;
-using L38TRN_HFT_2021221.Logic;
+﻿using L38TRN_HFT_2021221.Models;
 using L38TRN_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
@@ -12,22 +11,19 @@ namespace L38TRN_HFT_2021221.Logic
     public class ArtistLogic : IArtistLogic
     {
         IArtistRepository artistRepo;
-        public ArtistLogic()
-        {
-            artistRepo = new ArtistRepository(new ProjectDbContext());
-        }
+
 
         public ArtistLogic(IArtistRepository repo)
         {
             this.artistRepo = repo;
         }
 
-        public void ChangeArtistName(int id, string newName)
+        public void Update(int id, string newName)
         {
             artistRepo.UpdateArtistName(id, newName);
         }
 
-        public Artist GetOneArtist(int id)
+        public Artist Read(int id)
         {
             return artistRepo.GetOne(id);
         }
@@ -37,34 +33,14 @@ namespace L38TRN_HFT_2021221.Logic
             return artistRepo.GetAll().ToList();
         }
 
-        public void CreateNewArtist(Artist artist)
+        public void Create(Artist artist)
         {
             artistRepo.Create(artist);
         }
 
-        public void DeleteArtistById(int id)
-        {
-            artistRepo.DeleteArtist(id);
-        }
-
-        public void Create(Artist artist)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Artist Read(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Artist artist)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            artistRepo.DeleteArtist(id);
         }
 
         public IEnumerable<Artist> ReadAll()

@@ -6,16 +6,16 @@ using System.Linq;
 
 namespace L38TRN_HFT_2021221.Logic
 {
-    public class AlbumLogic
+    public class AlbumLogic : IAlbumLogic
     {
         IAlbumRepository albumRepo;
 
-        public void ChangeAlbumName(int id, string newName)
+        public void Update(int id, string newName)
         {
             albumRepo.UpdateAlbumName(id, newName);
         }
 
-        public Album GetOneArtist(int id)
+        public Album Read(int id)
         {
             return albumRepo.GetOne(id);
         }
@@ -25,14 +25,19 @@ namespace L38TRN_HFT_2021221.Logic
             return albumRepo.GetAll().ToList();
         }
 
-        public void CreateNewAlbum(Album album)
+        public void Create(Album album)
         {
             albumRepo.Create(album);
         }
 
-        public void DeleteAlbumById(int id)
+        public void Delete(int id)
         {
             albumRepo.DeleteAlbum(id);
+        }
+
+        public IEnumerable<Album> ReadAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

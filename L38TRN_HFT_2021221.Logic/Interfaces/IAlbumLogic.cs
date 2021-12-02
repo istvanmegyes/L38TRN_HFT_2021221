@@ -1,4 +1,4 @@
-﻿using L38TRN_HFT_2021221.Data;
+﻿using L38TRN_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace L38TRN_HFT_2021221.Logic
     {
         void Create(Album album);
         Album Read(int id);
-        void Update(Album album);
+        void Update(int id, string newName);
         void Delete(int id);
         IEnumerable<Album> ReadAll();
     }

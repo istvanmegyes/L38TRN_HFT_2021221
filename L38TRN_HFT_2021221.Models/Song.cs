@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace L38TRN_HFT_2021221.Data
+namespace L38TRN_HFT_2021221.Models
 {
     [Table("Songs")]
     public class Song

@@ -1,4 +1,5 @@
-﻿using L38TRN_HFT_2021221.Data;
+﻿using L38TRN_HFT_2021221.Models;
+using L38TRN_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Logic
 {
-    public class SongLogic
+    public class SongLogic : ISongLogic
     {
-        public void ChangeAlbumName(int id, string newName)
+        ISongRepository songRepo;
+        public void Update(int id, string newSongName)
         {
-            songRepo.ChangeAlbumName(id, newName);
+            songRepo.UpdateSongName(id, newSongName);
         }
 
-        public Song GetOneArtist(int id)
+        public Song Read(int id)
         {
             return songRepo.GetOne(id);
         }
@@ -24,14 +26,19 @@ namespace L38TRN_HFT_2021221.Logic
             return songRepo.GetAll().ToList();
         }
 
-        public void InsertSong(Song song)
+        public void Create(Song song)
         {
-            songRepo.CreateSong(song);
+            songRepo.Create(song);
         }
 
-        public void DeleteSongById(int id)
+        public void Delete(int id)
         {
-            songRepo.DeleteSongById(id);
+            songRepo.DeleteSong(id);
+        }
+
+        public IEnumerable<Song> ReadAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

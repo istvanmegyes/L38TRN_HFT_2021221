@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace L38TRN_HFT_2021221.Data
+namespace L38TRN_HFT_2021221.Models
 {
     [Table("Artists")]
     public class Artist

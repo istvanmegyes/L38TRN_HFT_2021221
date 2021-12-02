@@ -1,4 +1,4 @@
-﻿using L38TRN_HFT_2021221.Data;
+﻿using L38TRN_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace L38TRN_HFT_2021221.Logic
     {
         void Create(Artist artist);
         Artist Read(int id);
-        void Update(Artist artist);
+        void Update(int id, string newName);
         void Delete(int id);
         IEnumerable<Artist> ReadAll();
         IEnumerable<KeyValuePair<string, Album>> AVGAlbumsByArtist();
