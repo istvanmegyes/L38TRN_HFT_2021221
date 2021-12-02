@@ -1,4 +1,4 @@
-﻿using L38TRN_HFT_2021221.Data;
+﻿using L38TRN_HFT_2021221.Models;
 using L38TRN_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;

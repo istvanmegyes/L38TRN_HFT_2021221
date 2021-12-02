@@ -1,4 +1,5 @@
-﻿using L38TRN_HFT_2021221.Data;
+﻿using L38TRN_HFT_2021221.Logic;
+using L38TRN_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,49 +8,46 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Endpoint
 {
-    public class SongController
+    [Route("[controller]")]
+    [ApiController]
+    public class SongController : ControllerBase
     {
-        [Route("[controller]")]
-        [ApiController]
-        public class SongController : ControllerBase
+        ISongLogic SongLogic;
+
+        public SongController(ISongLogic SongLogic)
         {
-            ISongLogic SongLogic;
+            this.SongLogic = SongLogic;
+        }
 
-            public SongController(ISongLogic SongLogic)
-            {
-                this.SongLogic = SongLogic;
-            }
+        // GET: /Song
+        [HttpGet]
+        public IEnumerable<Song> Get()
+        {
+            return SongLogic.ReadAll();
+        }
 
-            // GET: /Song
-            [HttpGet]
-            public IEnumerable<Song> Get()
-            {
-                return SongLogic.GetAllSongs();
-            }
+        [HttpGet("{id}")]
+        public Song Get(int id)
+        {
+            return SongLogic.Read(id);
+        }
 
-            [HttpGet("{id}")]
-            public Song Get(int id)
-            {
-                return SongLogic.GetSongById(id);
-            }
+        [HttpPost]
+        public void Post([FromBody] Song value)
+        {
+            SongLogic.Create(value);
+        }
 
-            [HttpPost]
-            public void Post([FromBody] Song value)
-            {
-                SongLogic.AddNewSong(value);
-            }
+        [HttpPut]
+        public void Put([FromBody] int id, string newName)
+        {
+            SongLogic.Update(id, newName);
+        }
 
-            [HttpPut]
-            public void Put([FromBody] Song value)
-            {
-                SongLogic.UpdateSong(value);
-            }
-
-            [HttpDelete("{id}")]
-            public void Delete(int id)
-            {
-                SongLogic.DeleteSong(id);
-            }
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            SongLogic.Delete(id);
         }
     }
 }

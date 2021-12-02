@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using L38TRN_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
