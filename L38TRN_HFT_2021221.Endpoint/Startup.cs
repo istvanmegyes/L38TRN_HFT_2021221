@@ -1,6 +1,11 @@
+using L38TRN_HFT_2021221.Data;
+using L38TRN_HFT_2021221.Logic;
+using L38TRN_HFT_2021221.Models;
+using L38TRN_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -16,6 +21,18 @@ namespace L38TRN_HFT_2021221.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers(); 
+
+            services.AddTransient<IAlbumLogic, AlbumLogic>();
+            services.AddTransient<IArtistLogic, ArtistLogic>();
+            services.AddTransient<ISongLogic, SongLogic>();
+
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
+            services.AddTransient<IArtistRepository, ArtistRepository>();
+            services.AddTransient<ISongRepository, SongRepository>();
+
+
+            services.AddSingleton<DbContext, ProjectDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,10 +47,12 @@ namespace L38TRN_HFT_2021221.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
+                /*
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
-                });
+                });*/
             });
         }
     }
