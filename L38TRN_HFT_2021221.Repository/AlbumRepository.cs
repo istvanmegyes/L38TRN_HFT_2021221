@@ -7,46 +7,40 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Repository
 {
-    public class AlbumRepository : Repository<Album>
+    public class AlbumRepository : Repository<Album>, IAlbumRepository
     {
-        public AlbumRepository(ProjectDbContext projectDbContext) : base(projectDbContext)
-        {
-
-        }
+        public AlbumRepository(ProjectDbContext projectDbContext) : base(projectDbContext) { }
         public override Album GetOne(int id)
         {
-            throw new NotImplementedException();
+            return GetAll().SingleOrDefault(x => x.AlbumID == id);
         }
 
-        public void AddNewAlbum(Album Album)
+        public void Create(Album album)
         {
-            projectDbContext.Add(Album);
+            projectDbContext.Add(album);
             projectDbContext.SaveChanges();
         }
 
-        public void ChangeTitle(int id, string newTitle)
-        {
-            var Album = GetOne(id);
-            Album.Title = newTitle;
-            projectDbContext.SaveChanges();
-        }
-
-        public void DeleteAlbumById(int id)
+        public void DeleteAlbum(int id)
         {
             var toDelete = GetOne(id);
             projectDbContext.Remove(toDelete);
             projectDbContext.SaveChanges();
         }
 
-        public override Album GetOne(int id)
+        public void UpdateAlbumName(int id, string newAlbumName)
         {
-            return GetAll().SingleOrDefault(x => x.AlbumId == id);
-        }
-
-        public void UpdateAlbum(Album Album)
-        {
-
+            var toUpdate = GetOne(id);
+            toUpdate.Title = newAlbumName;
             projectDbContext.SaveChanges();
         }
+
+        public void UpdateAlbumPrice(int id, int newPrice)
+        {
+            var toUpdate = GetOne(id);
+            toUpdate.Price = newPrice;
+            projectDbContext.SaveChanges();
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Repository
 {
-    public class ArtistRepository : IRepository<Artist>
+    public class ArtistRepository : Repository<Artist>, IArtistRepository
     {
         public ArtistRepository(ProjectDbContext projectDbContext) : base(projectDbContext) { }
 
@@ -24,32 +24,27 @@ namespace L38TRN_HFT_2021221.Repository
             projectDbContext.SaveChanges();
         }
 
-        public void AddNewArtist(Artist Artist)
+        public void Create(Artist Artist)
         {
             projectDbContext.Add(Artist);
             projectDbContext.SaveChanges();
         }
 
-        public void DeleteArtistById(int id)
+        public void DeleteArtist(int id)
         {
             var toDelete = GetOne(id);
             projectDbContext.Remove(toDelete);
             projectDbContext.SaveChanges();
         }
 
-        public void UpdateArtist(Artist Artist)
+        public void UpdateArtistNationality(int id, string newNationality)
         {
-            var toUpdate = GetOne(Artist.ArtistID);
+            var toUpdate = GetOne(id);
 
-            toUpdate.ArtistName = Artist.ArtistName;
-            // etc. for additional properties
+            toUpdate.ArtistName = newNationality;
 
             projectDbContext.SaveChanges();
         }
 
-        public IQueryable<Artist> GetAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

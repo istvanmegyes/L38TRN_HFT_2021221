@@ -13,7 +13,7 @@ namespace L38TRN_HFT_2021221.Data
     {
         [Key]
         public int AlbumID { get; set; }
-        public string AlbumName { get; set; }
+        public string Title { get; set; }
         public double Price { get; set; }
 
         [ForeignKey(nameof(Artist))]

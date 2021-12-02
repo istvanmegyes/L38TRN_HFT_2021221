@@ -29,7 +29,7 @@ namespace L38TRN_HFT_2021221.Data
         {
             Artist kendrickLamar = new Artist() { ArtistID = 1, ArtistName = "Kendrik Lamar" };
 
-            Album goodKid = new Album() { AlbumID = 1, AlbumName = "Good Kid, M.A.A.D City", Price = 13.99 };
+            Album goodKid = new Album() { AlbumID = 1, Title = "Good Kid, M.A.A.D City", Price = 13.99 };
 
             Song backseatFreestlye = new Song() { SongID = 1, SongName = "Backseat Freestyle", AlbumName = goodKid, Duration = 212 };
             Song poeticJustice = new Song() { SongID = 2, SongName = "Poetic Justice", AlbumName = goodKid, ArtistName = kendrickLamar, Duration = 212 };

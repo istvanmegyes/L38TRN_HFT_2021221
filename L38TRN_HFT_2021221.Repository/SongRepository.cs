@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Repository
 {
-    public class SongRepository : Repository<Song>
+    public class SongRepository : Repository<Song>, ISongRepository
     {
         public SongRepository(ProjectDbContext projectDbContext) : base(projectDbContext) { }
 
         public override Song GetOne(int id)
         {
-            return GetAll().SingleOrDefault(x => x.SongId == id);
+            return GetAll().SingleOrDefault(x => x.SongID == id);
         }
 
         public void UpdateSongName(int id, string newSongName)
@@ -23,25 +23,23 @@ namespace L38TRN_HFT_2021221.Repository
             projectDbContext.SaveChanges();
         }
 
-        public void AddNewSong(Song Song)
+        public void Create(Song Song)
         {
             projectDbContext.Add(Song);
             projectDbContext.SaveChanges();
         }
 
-        public void DeleteSongById(int id)
+        public void DeleteSong(int id)
         {
             var toDelete = GetOne(id);
             projectDbContext.Remove(toDelete);
             projectDbContext.SaveChanges();
         }
 
-        public void UpdateSong(Song Song)
+        public void UpdateSongDuration(int id, int newDuration)
         {
-            var toUpdate = GetOne(Song.SongId);
-
-            toUpdate.Content = Song.Content;
-            // etc. for additional properties
+            var toUpdate = GetOne(id);
+            toUpdate.Duration = newDuration;
 
             projectDbContext.SaveChanges();
         }

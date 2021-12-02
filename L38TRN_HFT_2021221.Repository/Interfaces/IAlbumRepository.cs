@@ -11,7 +11,7 @@ namespace L38TRN_HFT_2021221.Repository
     {
         void Create(Album album);
         void UpdateAlbumName(int id, string newAlbumName);
-        void updateAlbumPrice(int id, int newPrice);
+        void UpdateAlbumPrice(int id, int newPrice);
         void DeleteAlbum(int id);
     }
 }
