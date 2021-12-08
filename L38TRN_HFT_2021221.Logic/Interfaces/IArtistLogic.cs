@@ -14,6 +14,6 @@ namespace L38TRN_HFT_2021221.Logic
         void Update(int id, string newName);
         void Delete(int id);
         IEnumerable<Artist> ReadAll();
-        IEnumerable<KeyValuePair<string, Album>> AVGAlbumsByArtist();
+        IEnumerable<KeyValuePair<string, int>> GetNationalityCountOfArtists();
     }
 }

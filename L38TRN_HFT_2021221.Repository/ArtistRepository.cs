@@ -14,7 +14,7 @@ namespace L38TRN_HFT_2021221.Repository
 
         public override Artist GetOne(int id)
         {
-            return GetAll().SingleOrDefault(x => x.ArtistID == id);
+            return GetAll().SingleOrDefault(x => x.ID == id);
         }
 
         public void UpdateArtistName(int id, string newName)

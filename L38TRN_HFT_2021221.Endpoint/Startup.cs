@@ -32,7 +32,7 @@ namespace L38TRN_HFT_2021221.Endpoint
             services.AddTransient<ISongRepository, SongRepository>();
 
 
-            services.AddSingleton<DbContext, ProjectDbContext>();
+            services.AddSingleton<ProjectDbContext, ProjectDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -37,7 +37,7 @@ namespace L38TRN_HFT_2021221.Logic
 
         public IEnumerable<Album> ReadAll()
         {
-            throw new NotImplementedException();
+           return albumRepo.GetAll();
         }
     }
 }

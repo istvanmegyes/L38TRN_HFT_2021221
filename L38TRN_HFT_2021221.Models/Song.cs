@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace L38TRN_HFT_2021221.Models
@@ -12,13 +13,18 @@ namespace L38TRN_HFT_2021221.Models
     public class Song
     {
         [Key]
-        public int SongID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
         public string SongName { get; set; }
-        [ForeignKey(nameof(Artist))]
-        public Artist ArtistName { get; set; }
+
+        public double Duration { get; set; }
+
         [ForeignKey(nameof(Album))]
-        public Album AlbumName { get; set; }
-        public int Duration { get; set; }
+        public int AlbumID { get; set; }
+
+        [NotMapped]
+        [JsonIgnore]
+        public virtual Album Album { get; set; }
 
     }
 }

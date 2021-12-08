@@ -28,7 +28,7 @@ namespace L38TRN_HFT_2021221.Logic
             return artistRepo.GetOne(id);
         }
 
-        public List<Artist> GetAll()
+        public IEnumerable<Artist> ReadAll()
         {
             return artistRepo.GetAll().ToList();
         }
@@ -43,14 +43,24 @@ namespace L38TRN_HFT_2021221.Logic
             artistRepo.DeleteArtist(id);
         }
 
-        public IEnumerable<Artist> ReadAll()
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<KeyValuePair<string, Album>> AVGAlbumsByArtist()
+        public IEnumerable<KeyValuePair<string, int>> GetNationalityCountOfArtists()
         {
-            throw new NotImplementedException();
+            var q = from x in artistRepo.GetAll()
+                    group x by (x.Nationality) into g
+                    select new {
+                        _Nationality = g.Key,
+                        _Count = g.Count()
+                    };
+
+            var output = new List<KeyValuePair<string, int>>();
+
+            foreach (var item in q)
+            {
+                output.Add(new KeyValuePair<string, int>(item._Nationality, item._Count));
+            }
+
+            return output;
         }
     }
 }

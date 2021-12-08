@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace L38TRN_HFT_2021221.Models
 {
@@ -9,17 +10,18 @@ namespace L38TRN_HFT_2021221.Models
     public class Artist
     {
         [Key]
-        public int ArtistID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
         public string ArtistName { get; set; }
         public string Nationality { get; set; }
+        public int Age { get; set; }
+
         [NotMapped]
-        public virtual ICollection<Song> Songs { get; set; }
-        [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }
 
         public Artist()
         {
-            Songs = new HashSet<Song>();
             Albums = new HashSet<Album>();
         }
     }

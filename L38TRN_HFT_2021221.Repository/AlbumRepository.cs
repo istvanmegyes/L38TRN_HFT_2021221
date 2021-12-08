@@ -13,7 +13,7 @@ namespace L38TRN_HFT_2021221.Repository
         public AlbumRepository(ProjectDbContext projectDbContext) : base(projectDbContext) { }
         public override Album GetOne(int id)
         {
-            return GetAll().SingleOrDefault(x => x.AlbumID == id);
+            return GetAll().SingleOrDefault(x => x.ID == id);
         }
 
         public void Create(Album album)

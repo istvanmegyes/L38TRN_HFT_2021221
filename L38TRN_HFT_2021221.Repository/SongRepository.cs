@@ -14,7 +14,7 @@ namespace L38TRN_HFT_2021221.Repository
 
         public override Song GetOne(int id)
         {
-            return GetAll().SingleOrDefault(x => x.SongID == id);
+            return GetAll().SingleOrDefault(x => x.ID == id);
         }
 
         public void UpdateSongName(int id, string newSongName)

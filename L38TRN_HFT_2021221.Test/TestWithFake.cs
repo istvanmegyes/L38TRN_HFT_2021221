@@ -1,4 +1,4 @@
-﻿using L38TRN_HFT_2021221.Data;
+﻿using L38TRN_HFT_2021221.Models;
 using L38TRN_HFT_2021221.Logic;
 using L38TRN_HFT_2021221.Repository;
 using NUnit.Framework;
@@ -20,6 +20,21 @@ namespace L38TRN_HFT_2021221.Test
             }
 
             public void Delete(int id)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void DeleteArtist(int id)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IQueryable<Artist> GetAll()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Artist GetOne(int id)
             {
                 throw new NotImplementedException();
             }
@@ -50,6 +65,16 @@ namespace L38TRN_HFT_2021221.Test
             }
 
             public void Update(Artist artist)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void UpdateArtistName(int id, string newName)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void UpdateArtistNationality(int id, string newNationality)
             {
                 throw new NotImplementedException();
             }
@@ -110,6 +135,6 @@ namespace L38TRN_HFT_2021221.Test
             }
 
         }
+        
     }
-}
 }
