@@ -39,7 +39,7 @@ namespace L38TRN_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpPut]
-        public void Put([FromBody] int id, Album newAlbum)
+        public void Put([FromBody] Album newAlbum)
         {
             AlbumLogic.Update(newAlbum);
         }

@@ -39,7 +39,7 @@ namespace L38TRN_HFT_2021221.Endpoint
         }
 
         [HttpPut]
-        public void Put([FromBody] int id, Song newSong)
+        public void Put([FromBody] Song newSong)
         {
             SongLogic.Update(newSong);
         }
