@@ -33,10 +33,10 @@ namespace L38TRN_HFT_2021221.Data
             Album goodKid = new Album() { ID = 1, ArtistID = kendrickLamar.ID, Title = "Good Kid, M.A.A.D City", Price = 13.99 };
 
             Song backseatFreestlye = new Song() { ID = 1, SongName = "Backseat Freestyle", AlbumID = goodKid.ID, Duration = 212 };
-            Song poeticJustice = new Song() { ID = 2, SongName = "Poetic Justice", Album = goodKid, AlbumID = goodKid.ID, Duration = 212 };
-            Song moneyTrees = new Song() { ID = 3, SongName = "Money Trees", Album = goodKid, AlbumID = goodKid.ID, Duration = 212 };
-            Song swimmingPools = new Song() { ID = 4, SongName = "Swimming Pools (Drank)", Album = goodKid, AlbumID = goodKid.ID, Duration = 212 };
-            Song compton = new Song() { ID = 5, SongName = "Compton", Album = goodKid, AlbumID = goodKid.ID, Duration = 212 };
+            Song poeticJustice = new Song() { ID = 2, SongName = "Poetic Justice", AlbumID = goodKid.ID, Duration = 212 };
+            Song moneyTrees = new Song() { ID = 3, SongName = "Money Trees", AlbumID = goodKid.ID, Duration = 212 };
+            Song swimmingPools = new Song() { ID = 4, SongName = "Swimming Pools (Drank)",  AlbumID = goodKid.ID, Duration = 212 };
+            Song compton = new Song() { ID = 5, SongName = "Compton",  AlbumID = goodKid.ID, Duration = 212 };
 
 
             modelBuilder.Entity<Album>(entity => entity.HasOne(album => album.Artist).WithMany(artist => artist.Albums).HasForeignKey(x => x.ArtistID).OnDelete(DeleteBehavior.ClientSetNull));
@@ -44,7 +44,7 @@ namespace L38TRN_HFT_2021221.Data
 
             modelBuilder.Entity<Artist>().HasData(kendrickLamar);
             modelBuilder.Entity<Album>().HasData(goodKid);
-            modelBuilder.Entity<Song>().HasData(backseatFreestlye);//, poeticJustice, moneyTrees, swimmingPools, compton); 
+            modelBuilder.Entity<Song>().HasData(backseatFreestlye, poeticJustice, moneyTrees, swimmingPools, compton); 
         }
     }
 }

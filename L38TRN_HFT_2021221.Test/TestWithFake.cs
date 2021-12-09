@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace L38TRN_HFT_2021221.Test
 {
     class TestWithFake
-    {/*
-        public class FakeArtistRepository // : IArtistRepository
+    {
+        private class FakeArtistRepository : IArtistRepository
         {
             public void Create(Artist artist)
             {
@@ -80,8 +80,8 @@ namespace L38TRN_HFT_2021221.Test
             }
         }
 
-
         ArtistLogic al;
+
         public TestWithFake()
         {
             al = new ArtistLogic(new FakeArtistRepository());
@@ -134,7 +134,6 @@ namespace L38TRN_HFT_2021221.Test
                 }), Throws.Exception);
             }
 
-        }*/
-
+        }
     }
 }
