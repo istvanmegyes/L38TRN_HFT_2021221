@@ -18,7 +18,7 @@ namespace L38TRN_HFT_2021221.Logic
         IEnumerable<KeyValuePair<string, int>> ArtistsMostListenedSong();
         IEnumerable<KeyValuePair<string, int>> ArtistsHighestSellingAlbum();
         IEnumerable<KeyValuePair<string, int>> NumberOfAlbumsByArtist();
-        IEnumerable<KeyValuePair<string, int>> AverageSongDurationByArtists();
+        IEnumerable<KeyValuePair<string, double>> AverageSongDurationByArtists();
         IEnumerable<KeyValuePair<string, int>> NumberOfSongByArtist();
     }
 }

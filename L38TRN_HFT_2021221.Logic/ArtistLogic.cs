@@ -119,22 +119,98 @@ namespace L38TRN_HFT_2021221.Logic
 
         public IEnumerable<KeyValuePair<string, int>> ArtistsHighestSellingAlbum()
         {
-            throw new NotImplementedException();
+            var q = from x in artistRepo.GetAll()
+                    join y in albumRepo.GetAll()
+                    on x.ID equals y.ArtistID
+                    let z = new {ArtistName = x.ArtistName, SoldAlbums = y.SoldAlbums}
+                    group z by (x.ArtistName) into g
+                    select new
+                    {
+                        _ArtistName = g.Key,
+                        _SoldAlbums = g.Max(x=>x.SoldAlbums)
+                    };
+
+            var output = new List<KeyValuePair<string, int>>();
+
+            foreach (var item in q)
+            {
+                output.Add(new KeyValuePair<string, int>(item._ArtistName, item._SoldAlbums));
+            }
+
+            return output;
         }
 
         public IEnumerable<KeyValuePair<string, int>> NumberOfAlbumsByArtist()
         {
-            throw new NotImplementedException();
+            var q = from x in artistRepo.GetAll()
+                    join y in albumRepo.GetAll()
+                    on x.ID equals y.ArtistID
+                    let z = new { ArtistName = x.ArtistName, AlbumCount = y.SoldAlbums }
+                    group z by (x.ArtistName) into g
+                    select new
+                    {
+                        _ArtistName = g.Key,
+                        _AlbumCount = g.Count()
+                    };
+
+            var output = new List<KeyValuePair<string, int>>();
+
+            foreach (var item in q)
+            {
+                output.Add(new KeyValuePair<string, int>(item._ArtistName, item._AlbumCount));
+            }
+
+            return output;
         }
 
-        public IEnumerable<KeyValuePair<string, int>> AverageSongDurationByArtists()
+        public IEnumerable<KeyValuePair<string, double>> AverageSongDurationByArtists()
         {
-            throw new NotImplementedException();
+            var q = from x in artistRepo.GetAll()
+                    join y in albumRepo.GetAll()
+                    on x.ID equals y.ArtistID
+                    join w in songRepo.GetAll()
+                    on y.ID equals w.AlbumID
+                    let z = new { ArtistName = x.ArtistName, SongDuration = w.Duration }
+                    group z by (z.ArtistName) into g
+                    select new
+                    {
+                        _ArtistName = g.Key,
+                        _AVGSongDuration = g.Average(v=>v.SongDuration)
+                    };
+
+            var output = new List<KeyValuePair<string, double>>();
+
+            foreach (var item in q)
+            {
+                output.Add(new KeyValuePair<string, double>(item._ArtistName, item._AVGSongDuration));
+            }
+
+            return output;
         }
 
         public IEnumerable<KeyValuePair<string, int>> NumberOfSongByArtist()
         {
-            throw new NotImplementedException();
+            var q = from x in artistRepo.GetAll()
+                    join y in albumRepo.GetAll()
+                    on x.ID equals y.ArtistID
+                    join w in songRepo.GetAll()
+                    on y.ID equals w.AlbumID
+                    let z = new { ArtistName = x.ArtistName, NumberOfListenings = w.NumberOfListens }
+                    group z by (z.ArtistName) into g
+                    select new
+                    {
+                        _ArtistName = g.Key,
+                        _NumberOfListenings = g.Count()
+                    };
+
+            var output = new List<KeyValuePair<string, int>>();
+
+            foreach (var item in q)
+            {
+                output.Add(new KeyValuePair<string, int>(item._ArtistName, item._NumberOfListenings));
+            }
+
+            return output;
         }
     }
 }
