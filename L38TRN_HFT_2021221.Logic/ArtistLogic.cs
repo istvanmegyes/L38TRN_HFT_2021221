@@ -23,7 +23,7 @@ namespace L38TRN_HFT_2021221.Logic
 
         public void Update(Artist artist)
         {
-            if (artistRepo.GetOne(artist.ID) != null && artist != null)
+            if (artist != null)
             {
                 artistRepo.Update(artist);
             }

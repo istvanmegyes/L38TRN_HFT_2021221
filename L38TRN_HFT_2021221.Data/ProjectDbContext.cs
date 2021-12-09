@@ -32,11 +32,11 @@ namespace L38TRN_HFT_2021221.Data
 
             Album goodKid = new Album() { ID = 1, ArtistID = kendrickLamar.ID, Title = "Good Kid, M.A.A.D City", Price = 13.99 };
 
-            Song backseatFreestlye = new Song() { ID = 1, SongName = "Backseat Freestyle", AlbumID = goodKid.ID, Duration = 212 };
-            Song poeticJustice = new Song() { ID = 2, SongName = "Poetic Justice", AlbumID = goodKid.ID, Duration = 212 };
-            Song moneyTrees = new Song() { ID = 3, SongName = "Money Trees", AlbumID = goodKid.ID, Duration = 212 };
-            Song swimmingPools = new Song() { ID = 4, SongName = "Swimming Pools (Drank)",  AlbumID = goodKid.ID, Duration = 212 };
-            Song compton = new Song() { ID = 5, SongName = "Compton",  AlbumID = goodKid.ID, Duration = 212 };
+            Song backseatFreestlye = new Song() { ID = 1, SongName = "Backseat Freestyle", AlbumID = goodKid.ID, Duration = 1.23 };
+            Song poeticJustice = new Song() { ID = 2, SongName = "Poetic Justice", AlbumID = goodKid.ID, Duration = 7.23 };
+            Song moneyTrees = new Song() { ID = 3, SongName = "Money Trees", AlbumID = goodKid.ID, Duration = 6.1 };
+            Song swimmingPools = new Song() { ID = 4, SongName = "Swimming Pools (Drank)",  AlbumID = goodKid.ID, Duration = 3.24 };
+            Song compton = new Song() { ID = 5, SongName = "Compton",  AlbumID = goodKid.ID, Duration = 4.2 };
 
 
             modelBuilder.Entity<Album>(entity => entity.HasOne(album => album.Artist).WithMany(artist => artist.Albums).HasForeignKey(x => x.ArtistID).OnDelete(DeleteBehavior.ClientSetNull));

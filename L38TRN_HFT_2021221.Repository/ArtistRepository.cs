@@ -25,9 +25,9 @@ namespace L38TRN_HFT_2021221.Repository
             projectDbContext.SaveChanges();
         }
 
-        public void Create(Artist Artist)
+        public void Create(Artist artist)
         {
-            projectDbContext.Add(Artist);
+            projectDbContext.Add(artist);
             projectDbContext.SaveChanges();
         }
 

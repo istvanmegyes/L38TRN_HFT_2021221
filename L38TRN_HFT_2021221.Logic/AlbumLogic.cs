@@ -17,7 +17,7 @@ namespace L38TRN_HFT_2021221.Logic
 
         public void Update(Album album)
         {
-            if (albumRepo.GetOne(album.ID) != null && album != null)
+            if (album != null)
             {
                 albumRepo.Update(album);
             }

@@ -19,7 +19,7 @@ namespace L38TRN_HFT_2021221.Logic
 
         public void Update(Song song)
         {
-            if (songRepo.GetOne(song.ID) != null && song != null)
+            if (song != null)
             {
                 songRepo.Update(song);
             }
