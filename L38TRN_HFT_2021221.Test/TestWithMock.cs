@@ -13,6 +13,7 @@ namespace L38TRN_HFT_2021221.Test
 {
     class TestWithMock
     {
+        /*
         ArtistLogic al;
         public TestWithMock()
         {
@@ -89,6 +90,6 @@ namespace L38TRN_HFT_2021221.Test
                 }), Throws.Exception);
             }
 
-        }
+        }*/
     }
 }

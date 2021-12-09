@@ -11,8 +11,10 @@ namespace L38TRN_HFT_2021221.Logic
     {
         void Create(Song song);
         Song Read(int id);
-        void Update(int id, string newSongName);
+        void Update(int id, Song song);
         void Delete(int id);
         IEnumerable<Song> ReadAll();
+        IEnumerable<Song> MostListenedSongs();
+        IEnumerable<Song> LeastListenedSongs();
     }
 }

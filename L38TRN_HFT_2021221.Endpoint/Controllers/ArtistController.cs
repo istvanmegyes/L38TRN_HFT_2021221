@@ -38,9 +38,9 @@ namespace L38TRN_HFT_2021221
         }
 
         [HttpPut]
-        public void Put([FromBody] int id, string newName)
+        public void Put([FromBody] int id, Artist newArtist)
         {
-            artistLogic.Update(id, newName);
+            artistLogic.Update(id, newArtist);
         }
 
         [HttpDelete("{id}")]

@@ -39,9 +39,9 @@ namespace L38TRN_HFT_2021221.Endpoint
         }
 
         [HttpPut]
-        public void Put([FromBody] int id, string newName)
+        public void Put([FromBody] int id, Song newSong)
         {
-            SongLogic.Update(id, newName);
+            SongLogic.Update(id, newSong);
         }
 
         [HttpDelete("{id}")]

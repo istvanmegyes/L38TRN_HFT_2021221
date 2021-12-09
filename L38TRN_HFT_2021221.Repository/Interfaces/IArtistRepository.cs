@@ -12,6 +12,7 @@ namespace L38TRN_HFT_2021221.Repository
         void Create(Artist artist);
         void UpdateArtistNationality(int id, string newNationality);
         void UpdateArtistName(int id, string newName);
+        void Update(int id, Artist artist);
         void DeleteArtist(int id);
     }
 }

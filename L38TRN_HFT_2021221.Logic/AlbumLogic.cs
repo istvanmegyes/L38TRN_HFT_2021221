@@ -10,14 +10,33 @@ namespace L38TRN_HFT_2021221.Logic
     {
         IAlbumRepository albumRepo;
 
-        public void Update(int id, string newName)
+        public AlbumLogic(IAlbumRepository albumRepo)
         {
-            albumRepo.UpdateAlbumName(id, newName);
+            this.albumRepo = albumRepo;
+        }
+
+        public void Update(int id, Album album)
+        {
+            if (albumRepo.GetOne(id) != null && album != null)
+            {
+                albumRepo.Update(id, album);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            }
         }
 
         public Album Read(int id)
         {
-            return albumRepo.GetOne(id);
+            if (albumRepo.GetOne(id) != null)
+            {
+                return albumRepo.GetOne(id);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            } 
         }
 
         public List<Album> GetAll()
@@ -27,17 +46,45 @@ namespace L38TRN_HFT_2021221.Logic
 
         public void Create(Album album)
         {
-            albumRepo.Create(album);
+            if (album != null)
+            {
+                albumRepo.Create(album);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            }
         }
 
         public void Delete(int id)
         {
-            albumRepo.DeleteAlbum(id);
+            if (albumRepo.GetOne(id) != null)
+            {
+                albumRepo.DeleteAlbum(id);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            }
         }
 
         public IEnumerable<Album> ReadAll()
         {
            return albumRepo.GetAll();
+        }
+
+        public IEnumerable<Album> CheapAlbums()
+        {
+            return from x in albumRepo.GetAll()
+                   where x.Price < 10
+                   select x;
+        }
+
+        public IEnumerable<Album> ExpensiveAlbums()
+        {
+            return from x in albumRepo.GetAll()
+                   where x.Price > 25
+                   select x;
         }
     }
 }

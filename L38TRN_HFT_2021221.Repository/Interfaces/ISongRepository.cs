@@ -12,6 +12,7 @@ namespace L38TRN_HFT_2021221.Repository
         void Create(Song song);
         void UpdateSongDuration(int id, int newDuration);
         void UpdateSongName(int id, string newSongName);
+        void Update(int id, Song song);
         void DeleteSong(int id);
     }
 }

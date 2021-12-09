@@ -16,8 +16,10 @@ namespace L38TRN_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Category { get; set; }
+        public string Genre { get; set; }
         public double Price { get; set; }
+
+        public int SoldAlbums { get; set; }
 
         [ForeignKey(nameof(Artist))]
         public int ArtistID { get; set; }

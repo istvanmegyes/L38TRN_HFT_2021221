@@ -16,6 +16,8 @@ namespace L38TRN_HFT_2021221.Models
         public string Nationality { get; set; }
         public int Age { get; set; }
 
+        public int NumberOfAwards { get; set; }
+
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }

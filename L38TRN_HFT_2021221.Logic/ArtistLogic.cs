@@ -11,21 +11,38 @@ namespace L38TRN_HFT_2021221.Logic
     public class ArtistLogic : IArtistLogic
     {
         IArtistRepository artistRepo;
+        IAlbumRepository albumRepo;
+        ISongRepository songRepo;
 
-
-        public ArtistLogic(IArtistRepository repo)
+        public ArtistLogic(IArtistRepository artistRepo, IAlbumRepository albumRepo, ISongRepository songRepo)
         {
-            this.artistRepo = repo;
+            this.artistRepo = artistRepo;
+            this.albumRepo = albumRepo;
+            this.songRepo = songRepo;
         }
 
-        public void Update(int id, string newName)
+        public void Update(int id, Artist artist)
         {
-            artistRepo.UpdateArtistName(id, newName);
+            if (artistRepo.GetOne(id) != null && artist != null)
+            {
+                artistRepo.Update(id, artist);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            }
         }
 
         public Artist Read(int id)
         {
-            return artistRepo.GetOne(id);
+            if (artistRepo.GetOne(id) != null)
+            {
+                return artistRepo.GetOne(id);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            }
         }
 
         public IEnumerable<Artist> ReadAll()
@@ -35,18 +52,33 @@ namespace L38TRN_HFT_2021221.Logic
 
         public void Create(Artist artist)
         {
-            artistRepo.Create(artist);
+            if (artist != null)
+            {
+                artistRepo.Create(artist);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            }
         }
 
         public void Delete(int id)
         {
-            artistRepo.DeleteArtist(id);
+            if (artistRepo.GetOne(id) != null)
+            {
+                artistRepo.DeleteArtist(id);
+            }
+            else
+            {
+                throw new InvalidOperationException("ERROR");
+            }
         }
-
 
         public IEnumerable<KeyValuePair<string, int>> GetNationalityCountOfArtists()
         {
             var q = from x in artistRepo.GetAll()
+                    join y in albumRepo.GetAll()
+                    on x.ID equals y.ArtistID
                     group x by (x.Nationality) into g
                     select new {
                         _Nationality = g.Key,
@@ -61,6 +93,48 @@ namespace L38TRN_HFT_2021221.Logic
             }
 
             return output;
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> ArtistsMostListenedSong()
+        {
+            var q = from x in artistRepo.GetAll()
+                    join y in albumRepo.GetAll()
+                    on x.ID equals y.ArtistID
+                    group x by (x.Nationality) into g
+                    select new
+                    {
+                        _Nationality = g.Key,
+                        _Count = g.Count()
+                    };
+
+            var output = new List<KeyValuePair<string, int>>();
+
+            foreach (var item in q)
+            {
+                output.Add(new KeyValuePair<string, int>(item._Nationality, item._Count));
+            }
+
+            return output;
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> ArtistsHighestSellingAlbum()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> NumberOfAlbumsByArtist()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> AverageSongDurationByArtists()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValuePair<string, int>> NumberOfSongByArtist()
+        {
+            throw new NotImplementedException();
         }
     }
 }
