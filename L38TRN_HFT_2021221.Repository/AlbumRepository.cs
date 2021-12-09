@@ -43,9 +43,9 @@ namespace L38TRN_HFT_2021221.Repository
             projectDbContext.SaveChanges();
         }
 
-        public void Update(int id, Album album)
+        public void Update(Album album)
         {
-            var temp = GetOne(id);
+            var temp = GetOne(album.ID);
             temp = album;
             projectDbContext.SaveChanges();
         }

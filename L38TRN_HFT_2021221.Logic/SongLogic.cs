@@ -17,11 +17,11 @@ namespace L38TRN_HFT_2021221.Logic
             this.songRepo = songRepo;
         }
 
-        public void Update(int id, Song song)
+        public void Update(Song song)
         {
-            if (songRepo.GetOne(id) != null && song != null)
+            if (songRepo.GetOne(song.ID) != null && song != null)
             {
-                songRepo.Update(id, song);
+                songRepo.Update(song);
             }
             else
             {

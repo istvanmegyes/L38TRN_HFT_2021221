@@ -15,11 +15,11 @@ namespace L38TRN_HFT_2021221.Logic
             this.albumRepo = albumRepo;
         }
 
-        public void Update(int id, Album album)
+        public void Update(Album album)
         {
-            if (albumRepo.GetOne(id) != null && album != null)
+            if (albumRepo.GetOne(album.ID) != null && album != null)
             {
-                albumRepo.Update(id, album);
+                albumRepo.Update(album);
             }
             else
             {

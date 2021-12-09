@@ -11,7 +11,7 @@ namespace L38TRN_HFT_2021221.Logic
     {
         void Create(Artist artist);
         Artist Read(int id);
-        void Update(int id, Artist artist);
+        void Update(Artist artist);
         void Delete(int id);
         IEnumerable<Artist> ReadAll();
         IEnumerable<KeyValuePair<string, int>> GetNationalityCountOfArtists();

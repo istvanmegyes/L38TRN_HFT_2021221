@@ -21,11 +21,11 @@ namespace L38TRN_HFT_2021221.Logic
             this.songRepo = songRepo;
         }
 
-        public void Update(int id, Artist artist)
+        public void Update(Artist artist)
         {
-            if (artistRepo.GetOne(id) != null && artist != null)
+            if (artistRepo.GetOne(artist.ID) != null && artist != null)
             {
-                artistRepo.Update(id, artist);
+                artistRepo.Update(artist);
             }
             else
             {

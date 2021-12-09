@@ -11,7 +11,7 @@ namespace L38TRN_HFT_2021221.Logic
     {
         void Create(Album album);
         Album Read(int id);
-        void Update(int id, Album album);
+        void Update(Album album);
         void Delete(int id);
         IEnumerable<Album> ReadAll();
         IEnumerable<Album> CheapAlbums();
