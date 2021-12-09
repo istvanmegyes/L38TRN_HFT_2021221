@@ -76,45 +76,27 @@ namespace L38TRN_HFT_2021221.Logic
 
         public IEnumerable<KeyValuePair<string, int>> GetNationalityCountOfArtists()
         {
-            var q = from x in artistRepo.GetAll()
-                    join y in albumRepo.GetAll()
-                    on x.ID equals y.ArtistID
-                    group x by (x.Nationality) into g
-                    select new {
-                        _Nationality = g.Key,
-                        _Count = g.Count()
-                    };
+            return from x in artistRepo.GetAll()
+                   group x by (x.Nationality) into g
+                    select new KeyValuePair<string, int>(
+                        g.Key,
+                        g.Count()
+                    );
 
-            var output = new List<KeyValuePair<string, int>>();
-
-            foreach (var item in q)
-            {
-                output.Add(new KeyValuePair<string, int>(item._Nationality, item._Count));
-            }
-
-            return output;
         }
 
-        public IEnumerable<KeyValuePair<string, int>> ArtistsMostListenedSong()
+        public IEnumerable<KeyValuePair<string, double>> ArtistsMostExpensiveAlbum()
         {
-            var q = from x in artistRepo.GetAll()
+            return from x in artistRepo.GetAll()
                     join y in albumRepo.GetAll()
                     on x.ID equals y.ArtistID
-                    group x by (x.Nationality) into g
-                    select new
-                    {
-                        _Nationality = g.Key,
-                        _Count = g.Count()
-                    };
-
-            var output = new List<KeyValuePair<string, int>>();
-
-            foreach (var item in q)
-            {
-                output.Add(new KeyValuePair<string, int>(item._Nationality, item._Count));
-            }
-
-            return output;
+                    let z = new { ArtistName = x.ArtistName, SoldAlbums = y.Price }
+                    group z by (x.ArtistName) into g
+                    select new KeyValuePair<string, double>
+                    (
+                        g.Key,
+                        g.Max(x => x.SoldAlbums)
+                    );
         }
 
         public IEnumerable<KeyValuePair<string, int>> ArtistsHighestSellingAlbum()

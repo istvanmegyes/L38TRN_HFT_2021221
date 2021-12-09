@@ -31,7 +31,7 @@ namespace L38TRN_HFT_2021221.Test
                 new Mock<ISongRepository>();
 
             var fakeArtists = new List<Artist> {
-                                                new Artist { ID = 1, ArtistName = "TesztMax", Age=18,
+                                                new Artist { ID = 1, ArtistName = "TesztMax", Age=18, Nationality = "English", NumberOfAwards = 2,
                                                             Albums = new List<Album>() {
                                                                     new Album { ID = 1, ArtistID = 1, Genre = "RNB", Price = 35, SoldAlbums=250000, Title="RappAlbum", Songs =
                                                                             new List<Song> { new Song { ID = 1, SongName = "TesztSzam1", AlbumID =1, Duration = 2.45 },
@@ -41,7 +41,7 @@ namespace L38TRN_HFT_2021221.Test
                                                                             new List<Song> { new Song { ID = 4, SongName = "TesztSzam1", AlbumID =1, Duration = 2.45 } } }
                                                             }
                                                 },
-                                                new Artist { ID = 2, ArtistName = "TesztJani", Age=30,
+                                                new Artist { ID = 2, ArtistName = "TesztJani", Age=30, Nationality = "English", NumberOfAwards = 20,
                                                         Albums = new List<Album>() {
                                                                     new Album { ID = 3, ArtistID = 2, Genre = "Metál", Price = 5, SoldAlbums=5678, Title="MetálAlbum", Songs =
                                                                             new List<Song> {new Song { ID = 5, SongName = "Szam2", AlbumID = 3, Duration = 2.12 },
@@ -49,7 +49,7 @@ namespace L38TRN_HFT_2021221.Test
                                                                             }
                                                         }
                                                 },
-                                                new Artist { ID = 3, ArtistName = "Géza", Age=69,
+                                                new Artist { ID = 3, ArtistName = "Géza", Age=69, Nationality = "English", NumberOfAwards = 12,
                                                         Albums = new List<Album>() {
                                                                 new Album { ID = 4, ArtistID = 3, Genre = "Pop", Price = 10, SoldAlbums=5678, Title="MulatósAlbum", Songs =
                                                                             new List<Song> {new Song { ID = 7, SongName = "Szam42", AlbumID = 4, Duration = 2.43 },
@@ -66,16 +66,16 @@ namespace L38TRN_HFT_2021221.Test
             Artist a1 = new Artist() { ID = 4, ArtistName = "JoTesztEloado1", Age = 22 };
             Artist a2 = new Artist() { ID = 5, ArtistName = "JoTesztEloado2", Age = 22 };
 
-            var fakeAlbums = new List<Album> { new Album() { ID = 7, ArtistID = a1.ID, Title = "TesztAlbum1", Price = 45.00 },
-                                               new Album() { ID = 8, ArtistID = a1.ID, Title = "TesztAlbum2", Price = 1.99 },
-                                               new Album() { ID = 9, ArtistID = a2.ID, Title = "TesztAlbum3", Price = 18.00 }
+            var fakeAlbums = new List<Album> { new Album() { ID = 7, ArtistID = 1, Artist = a1, SoldAlbums = 21010303, Genre="Pop",  Title = "TesztAlbum1", Price = 45.00 },
+                                               new Album() { ID = 8, ArtistID = 1, Artist = a1, SoldAlbums = 231, Genre="Rock", Title = "TesztAlbum2", Price = 1.99 },
+                                               new Album() { ID = 9, ArtistID = 2, Artist = a2, SoldAlbums = 536, Genre="Jazz", Title = "TesztAlbum3", Price = 18.00 }
         }.AsQueryable();
-            var fakeSongs = new List<Song> { new Song { ID = 5, SongName = "Compton", AlbumID =7, Duration = 212 },
-                                            new Song { ID = 6, SongName = "Fazék", AlbumID =7, Duration = 212 },
-                                            new Song { ID = 7, SongName = "Kés és héjas alma", AlbumID =8, Duration = 212 },
-                                            new Song { ID = 8, SongName = "Teszt", AlbumID =8, Duration = 212 },
-                                            new Song { ID = 9, SongName = "Damu roland", AlbumID =8, Duration = 212 },
-                                            new Song { ID = 10, SongName = "Valami", AlbumID =9, Duration = 212 }}.AsQueryable();
+            var fakeSongs = new List<Song> { new Song { ID = 5, SongName = "Compton", AlbumID =7, Duration = 2.75, NumberOfListens = 2000000 },
+                                            new Song { ID = 6, SongName = "Fazék", AlbumID =7, Duration = 3.5, NumberOfListens = 20 },
+                                            new Song { ID = 7, SongName = "Kés és héjas alma", AlbumID =8, Duration = 2.5, NumberOfListens = 10 },
+                                            new Song { ID = 8, SongName = "Teszt", AlbumID =8, Duration = 5, NumberOfListens = 100 },
+                                            new Song { ID = 9, SongName = "Damu roland", AlbumID =8, Duration = 2.5, NumberOfListens = 400 },
+                                            new Song { ID = 10, SongName = "Valami", AlbumID =9, Duration = 2.5, NumberOfListens = 2 }}.AsQueryable();
 
             mockArtistRepository.Setup((t) => t.GetAll()).Returns(fakeArtists);
             mockAlbumRepository.Setup((t) => t.GetAll()).Returns(fakeAlbums);
@@ -96,7 +96,6 @@ namespace L38TRN_HFT_2021221.Test
                 Nationality = "Hungarian",
                 Age = 21,
                 NumberOfAwards = 12
-                
             };
 
             try
@@ -186,37 +185,43 @@ namespace L38TRN_HFT_2021221.Test
         [TestCase]
         public void GetNationalityCountOfArtistsTest() 
         {
-            
+            var result = artistLogic.GetNationalityCountOfArtists().ToArray();
+            Assert.That(result[0], Is.EqualTo(new KeyValuePair<string, int>("English", 3)));
         }
 
         [TestCase]
-        public void ArtistsMostListenedSongTest() 
+        public void ArtistsMostExpensiveAlbumTest() 
         {
-
+            var result = artistLogic.ArtistsMostExpensiveAlbum().ToArray();
+            Assert.That(result[0], Is.EqualTo(new KeyValuePair<string, int>("TesztMax", 45)));
         }
 
         [TestCase]
         public void ArtistsHighestSellingAlbumTest() 
         {
-        
+            var result = artistLogic.ArtistsHighestSellingAlbum().ToArray();
+            Assert.That(result[0], Is.EqualTo(new KeyValuePair<string, int>("TesztMax", 21010303)));
         }
 
         [TestCase]
         public void NumberOfAlbumsByArtistTest()
         {
-        
+            var result = artistLogic.NumberOfAlbumsByArtist().ToArray();
+            Assert.That(result[0], Is.EqualTo(new KeyValuePair<string, int>("TesztMax",2)));
         }
 
         [TestCase]
         public void AverageSongDurationByArtistsTest()
         {
-        
+            var result = artistLogic.AverageSongDurationByArtists().ToArray();
+            Assert.That(result[0], Is.EqualTo(new KeyValuePair<string, double>("TesztMax", 3.25)));
         }
 
         [TestCase]
         public void NumberOfSongByArtistTest()
         {
-        
+            var result = artistLogic.NumberOfSongByArtist().ToArray();
+            Assert.That(result[0], Is.EqualTo(new KeyValuePair<string, int>("TesztMax", 5)));
         }
 
     }
