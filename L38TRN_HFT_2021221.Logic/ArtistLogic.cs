@@ -33,6 +33,16 @@ namespace L38TRN_HFT_2021221.Logic
             }
         }
 
+        public void UpdateArtistName(int id, string newName) 
+        {
+            artistRepo.UpdateArtistName(id, newName);
+        }
+
+        public void UpdateArtistNationality(int id, string newNationality)
+        {
+            artistRepo.UpdateArtistNationality(id, newNationality);
+        }
+
         public Artist Read(int id)
         {
             if (artistRepo.GetOne(id) != null)

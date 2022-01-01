@@ -11,9 +11,12 @@ namespace L38TRN_HFT_2021221.Client
     {
         HttpClient client;
 
-        public RestService(string baseurl)
+        public RestService(string baseurl = null)
         {
-            Init(baseurl);
+            if (baseurl != null)
+            {
+                Init(baseurl);
+            }
         }
 
         private void Init(string baseurl)
