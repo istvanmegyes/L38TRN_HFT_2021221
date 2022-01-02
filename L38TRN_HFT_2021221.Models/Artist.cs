@@ -26,5 +26,14 @@ namespace L38TRN_HFT_2021221.Models
         {
             Albums = new HashSet<Album>();
         }
+
+        public override string ToString()
+        {
+            return $"ID: {ID}\n" +
+                   $"Artist's name: {ArtistName}\n" +
+                   $"Nationality: {Nationality}\n" +
+                   $"Age: {Age}\n" +
+                   $"Number of awards won: {NumberOfAwards}";
+        }
     }
 }

@@ -28,6 +28,15 @@ namespace L38TRN_HFT_2021221.Logic
                 throw new InvalidOperationException("ERROR");
             }
         }
+        public void UpdateSongName(int id, string newSongName) 
+        {
+            songRepo.UpdateSongName(id, newSongName);
+        }
+
+        public void UpdateSongDuration(int id, int newDuration) 
+        {
+            songRepo.UpdateSongDuration(id, newDuration);
+        }
 
         public Song Read(int id)
         {

@@ -19,16 +19,21 @@ namespace L38TRN_HFT_2021221.Models
 
         public double Duration { get; set; }
 
-        public int FeatureArtistID { get; set; }
-
         public int NumberOfListens { get; set; }
 
         [ForeignKey(nameof(Album))]
-        public int AlbumID { get; set; }
+        public int? AlbumID { get; set; }
 
         [NotMapped]
         [JsonIgnore]
         public virtual Album Album { get; set; }
 
+        public override string ToString()
+        {
+            return $"ID: {ID}\n" +
+                   $"Song's name: {SongName}\n" +
+                   $"Duration: {Duration}\n" +
+                   $"Total number of listenings: {NumberOfListens}";
+        }
     }
 }

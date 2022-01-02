@@ -38,7 +38,7 @@ namespace L38TRN_HFT_2021221.Client
 
         }
 
-        public List<T> Get<T>(string endpoint)
+        public IEnumerable<T> Get<T>(string endpoint)
         {
             List<T> items = new List<T>();
             HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();

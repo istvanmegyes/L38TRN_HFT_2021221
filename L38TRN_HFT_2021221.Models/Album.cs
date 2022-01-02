@@ -22,7 +22,7 @@ namespace L38TRN_HFT_2021221.Models
         public int SoldAlbums { get; set; }
 
         [ForeignKey(nameof(Artist))]
-        public int ArtistID { get; set; }
+        public int? ArtistID { get; set; }
 
         [NotMapped]
         [JsonIgnore]
@@ -35,6 +35,15 @@ namespace L38TRN_HFT_2021221.Models
         public Album()
         {
             Songs = new HashSet<Song>();
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {ID}\n" +
+                   $"Album title: {Title}\n" +
+                   $"Genre: {Genre}\n" +
+                   $"Price: {Price}\n" +
+                   $"No. of albums sold: {SoldAlbums}";
         }
     }
 }

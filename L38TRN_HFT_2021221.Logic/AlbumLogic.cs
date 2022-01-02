@@ -15,6 +15,16 @@ namespace L38TRN_HFT_2021221.Logic
             this.albumRepo = albumRepo;
         }
 
+        public void UpdateAlbumName(int id, string newAlbumName) 
+        {
+            albumRepo.UpdateAlbumName(id, newAlbumName);
+        }
+
+        public void UpdateAlbumPrice(int id, int newPrice)
+        {
+            albumRepo.UpdateAlbumPrice(id, newPrice);
+        }
+
         public void Update(Album album)
         {
             if (album != null)
@@ -35,7 +45,7 @@ namespace L38TRN_HFT_2021221.Logic
             }
             else
             {
-                throw new InvalidOperationException("ERROR");
+                Console.ReadKey(); Console.ReadKey(); throw new InvalidOperationException("ERROR");
             } 
         }
 
