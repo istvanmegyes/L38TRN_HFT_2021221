@@ -18,6 +18,7 @@ namespace L38TRN_HFT_2021221.Client
             Init(ref restService);
 
 
+
             ConsoleMenu mainMenu = new ConsoleMenu();
             ConsoleMenu crudMenu = new ConsoleMenu();
             ConsoleMenu nonCrudMenu = new ConsoleMenu();
