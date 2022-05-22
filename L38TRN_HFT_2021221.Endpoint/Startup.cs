@@ -1,8 +1,10 @@
 using L38TRN_HFT_2021221.Data;
+using L38TRN_HFT_2021221.Endpoint.Services;
 using L38TRN_HFT_2021221.Logic;
 using L38TRN_HFT_2021221.Models;
 using L38TRN_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +37,7 @@ namespace L38TRN_HFT_2021221.Endpoint
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieDbApp.Endpoint", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "L38TRN_HFT_2021221.Endpoint", Version = "v1" });
             });
         }
 
@@ -46,19 +48,32 @@ namespace L38TRN_HFT_2021221.Endpoint
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "L38TRN_HFT_2021221.Endpoint"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "L38TRN_HFT_2021221.Endpoint v1"));
             }
+            /*
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                var response = new { error = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
 
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:48841"));
+                        app.UseAuthorization();
+            */
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                /*
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });*/
+                endpoints.MapHub<SignalRHub>("/hub");
             });
 
         }

@@ -22,27 +22,27 @@ namespace L38TRN_HFT_2021221.Endpoint.Controllers
         {
             return artistLogic.GetNationalityCountOfArtists();
         }
-
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, double>> ArtistsMostExpensiveAlbum() 
         {
             return artistLogic.ArtistsMostExpensiveAlbum();
         }
-
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, int>> ArtistsHighestSellingAlbum()
         {
             return artistLogic.ArtistsHighestSellingAlbum();
         }
-
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, int>> NumberOfAlbumsByArtist()
         {
             return artistLogic.NumberOfAlbumsByArtist();
         }
-
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, double>> AverageSongDurationByArtists()
         {
             return artistLogic.AverageSongDurationByArtists();
         }
-
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, int>> NumberOfSongByArtist()
         {
             return artistLogic.NumberOfSongByArtist();

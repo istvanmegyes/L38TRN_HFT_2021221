@@ -65,8 +65,8 @@ namespace L38TRN_HFT_2021221.Data
             Song justLoseIt = new Song() { ID = 16, SongName = "Just Lose It", AlbumID = encore.ID, Duration = 4.08, NumberOfListens = 167008080};
 
 
-            modelBuilder.Entity<Album>(entity => entity.HasOne(album => album.Artist).WithMany(artist => artist.Albums).HasForeignKey(x => x.ArtistID).OnDelete(DeleteBehavior.ClientSetNull));
-            modelBuilder.Entity<Song>(entity => entity.HasOne(song => song.Album).WithMany(album => album.Songs).HasForeignKey(x => x.AlbumID).OnDelete(DeleteBehavior.ClientSetNull));
+            modelBuilder.Entity<Album>(entity => entity.HasOne(album => album.Artist).WithMany(artist => artist.Albums).HasForeignKey(x => x.ArtistID).OnDelete(DeleteBehavior.Cascade));
+            modelBuilder.Entity<Song>(entity => entity.HasOne(song => song.Album).WithMany(album => album.Songs).HasForeignKey(x => x.AlbumID).OnDelete(DeleteBehavior.Cascade));
 
             modelBuilder.Entity<Artist>().HasData(kendrickLamar,postMalone,eminem,theWeeknd,daftPunk);
             modelBuilder.Entity<Album>().HasData(goodKid,randomAccessMemories,stoney,starboy,encore);

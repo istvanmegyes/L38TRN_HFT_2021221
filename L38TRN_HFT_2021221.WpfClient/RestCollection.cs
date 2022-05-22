@@ -270,7 +270,7 @@ namespace L38TRN_HFT_2021221.WpfClient
 
         public async void Init()
         {
-            await conn.StartAsync();
+           await conn.StartAsync();
         }
 
     }

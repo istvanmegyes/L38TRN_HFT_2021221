@@ -27,5 +27,19 @@ namespace L38TRN_HFT_2021221.WpfClient
             InitializeComponent();
         }
 
+        private void ArtistsButton_Click(object sender, RoutedEventArgs e)
+        {
+            new ArtistWindow().Show();
+        }
+
+        private void AlbumsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SongsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
