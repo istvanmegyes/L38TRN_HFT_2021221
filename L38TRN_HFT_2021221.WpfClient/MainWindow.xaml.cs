@@ -34,12 +34,12 @@ namespace L38TRN_HFT_2021221.WpfClient
 
         private void AlbumsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new AlbumWindow().Show();
         }
 
         private void SongsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new SongWindow().Show();
         }
     }
 }

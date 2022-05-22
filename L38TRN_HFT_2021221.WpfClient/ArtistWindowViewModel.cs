@@ -46,7 +46,7 @@ namespace L38TRN_HFT_2021221.WpfClient
             if (!IsInDesignMode)
             {
 
-                Artists = new RestCollection<Artist>("http://localhost:3445/", "artist");
+                Artists = new RestCollection<Artist>("http://localhost:3445/", "artist", "hub");
 
                 CreateArtistCommand = new RelayCommand(() => 
                 {

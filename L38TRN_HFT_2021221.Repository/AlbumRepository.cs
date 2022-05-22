@@ -46,7 +46,15 @@ namespace L38TRN_HFT_2021221.Repository
         public void Update(Album album)
         {
             var temp = GetOne(album.ID);
-            temp = album;
+
+            foreach (var prop in temp.GetType().GetProperties())
+            {
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    prop.SetValue(temp, prop.GetValue(album));
+                }
+            }
+
             projectDbContext.SaveChanges();
         }
     }
