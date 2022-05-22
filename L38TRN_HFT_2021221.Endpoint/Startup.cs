@@ -50,7 +50,7 @@ namespace L38TRN_HFT_2021221.Endpoint
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "L38TRN_HFT_2021221.Endpoint v1"));
             }
-            /*
+            
             app.UseExceptionHandler(c => c.Run(async context =>
             {
                 var exception = context.Features
@@ -64,12 +64,12 @@ namespace L38TRN_HFT_2021221.Endpoint
                 .AllowCredentials()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:48841"));
-                        app.UseAuthorization();
-            */
-            app.UseStaticFiles();
+                .WithOrigins("http://localhost:61866"));
+
             app.UseRouting();
 
+            app.UseAuthorization();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
