@@ -16,9 +16,10 @@ namespace L38TRN_HFT_2021221
     {
         IArtistLogic artistLogic;
         private readonly IHubContext<SignalRHub> hub;
-        public ArtistController(IArtistLogic artistLogic)
+        public ArtistController(IArtistLogic artistLogic, IHubContext<SignalRHub> hub)
         {
             this.artistLogic = artistLogic;
+            this.hub = hub;
         }
 
         [HttpGet]

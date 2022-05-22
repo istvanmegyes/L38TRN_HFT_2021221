@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using L38TRN_HFT_2021221.Endpoint.Services;
+using Microsoft.AspNetCore.SignalR;
 
 namespace L38TRN_HFT_2021221.Endpoint.Controllers
 {
@@ -12,7 +14,8 @@ namespace L38TRN_HFT_2021221.Endpoint.Controllers
     public class NonCrudController : Controller
     {
         IArtistLogic artistLogic;
-        public NonCrudController(IArtistLogic artistLogic)
+        private readonly IHubContext<SignalRHub> hub;
+        public NonCrudController(IArtistLogic artistLogic, IHubContext<SignalRHub> hub)
         {
             this.artistLogic = artistLogic;
         }
