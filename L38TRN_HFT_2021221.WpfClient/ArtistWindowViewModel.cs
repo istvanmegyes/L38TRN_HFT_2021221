@@ -28,11 +28,14 @@ namespace L38TRN_HFT_2021221.WpfClient
                     selectedArtist = new Artist
                     {
                         ID = value.ID,
-                        ArtistName = value.ArtistName
-                        
+                        ArtistName = value.ArtistName,
+                        Nationality = value.Nationality,
+                        NumberOfAwards = value.NumberOfAwards,
+                        Age = value.Age              
                     };
                     OnPropertyChanged();
                     (DeleteArtistCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateArtistCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -49,26 +52,23 @@ namespace L38TRN_HFT_2021221.WpfClient
                 Artists = new RestCollection<Artist>("http://localhost:3445/", "artist", "hub");
 
                 CreateArtistCommand = new RelayCommand(() => 
-                {
+
                     Artists.Add(new Artist()
                     {
                         ArtistName = selectedArtist.ArtistName
-                    }); 
+                    }) 
 
-                });
+                );
 
                 UpdateArtistCommand = new RelayCommand(() =>
                     Artists.Update(SelectedArtist),
                     () => SelectedArtist != null
                 );
 
-                DeleteArtistCommand = new RelayCommand(() => { 
-                    Artists.Delete(SelectedArtist.ID);
-                }, 
-                () =>
-                {
-                    return SelectedArtist != null;
-                }
+                DeleteArtistCommand = new RelayCommand(() =>  
+                    Artists.Delete(SelectedArtist.ID)
+                , 
+                    () => SelectedArtist != null
                 );
                 SelectedArtist = new Artist();
             }

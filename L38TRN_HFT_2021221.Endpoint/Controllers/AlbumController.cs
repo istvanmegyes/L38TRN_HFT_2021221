@@ -53,8 +53,8 @@ namespace L38TRN_HFT_2021221.Endpoint.Controllers
         public void Delete(int id)
         {
             var albumToDelete = this.AlbumLogic.Read(id);
-            this.hub.Clients.All.SendAsync("AlbumDeleted", albumToDelete);
             AlbumLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("AlbumDeleted", albumToDelete);
         }
     }
 }
