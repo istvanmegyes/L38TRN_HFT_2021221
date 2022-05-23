@@ -27,11 +27,14 @@ namespace L38TRN_HFT_2021221.WpfClient
                     selectedAlbum = new Album
                     {
                         ID = value.ID,
-                        Title = value.Title
-
+                        Title = value.Title,
+                        Genre = value.Genre,
+                        SoldAlbums = value.SoldAlbums,
+                        Price = value.Price
                     };
                     OnPropertyChanged();
                     (DeleteAlbumCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateAlbumCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -64,15 +67,10 @@ namespace L38TRN_HFT_2021221.WpfClient
                 DeleteAlbumCommand = new RelayCommand(() => {
                     Albums.Delete(SelectedAlbum.ID);
                 },
-                () =>
-                {
-                    return SelectedAlbum != null;
-                }
+                    () => SelectedAlbum != null
                 );
                 SelectedAlbum = new Album();
             }
-
-
         }
 
         public static bool IsInDesignMode

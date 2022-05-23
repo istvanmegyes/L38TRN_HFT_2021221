@@ -51,9 +51,9 @@ namespace L38TRN_HFT_2021221
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var artistToDelete = this.artistLogic.Read(id);
-            this.hub.Clients.All.SendAsync("ArtistDeleted", artistToDelete);
+            var artistToDelete = this.artistLogic.Read(id); 
             artistLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("ArtistDeleted", artistToDelete);
         }
     }
 

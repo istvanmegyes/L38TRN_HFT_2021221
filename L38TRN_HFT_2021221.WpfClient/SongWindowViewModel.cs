@@ -27,11 +27,13 @@ namespace L38TRN_HFT_2021221.WpfClient
                     selectedSong = new Song
                     {
                         ID = value.ID,
-                        SongName = value.SongName
-
+                        SongName = value.SongName,
+                        Duration = value.Duration,
+                        NumberOfListens = value.NumberOfListens
                     };
                     OnPropertyChanged();
                     (DeleteSongCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateSongCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -60,13 +62,10 @@ namespace L38TRN_HFT_2021221.WpfClient
                     () => SelectedSong != null
                 );
 
-                DeleteSongCommand = new RelayCommand(() => {
-                    Songs.Delete(SelectedSong.ID);
-                },
-                () =>
-                {
-                    return SelectedSong != null;
-                }
+                DeleteSongCommand = new RelayCommand(() =>
+                    Songs.Delete(SelectedSong.ID)
+                    ,
+                    () => SelectedSong != null
                 );
                 SelectedSong = new Song();
             }
