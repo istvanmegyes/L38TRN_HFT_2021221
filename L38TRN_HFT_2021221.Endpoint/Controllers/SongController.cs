@@ -54,8 +54,8 @@ namespace L38TRN_HFT_2021221.Endpoint
         public void Delete(int id)
         {
             var songToDelete = this.SongLogic.Read(id);
-            SongLogic.Delete(id);
             this.hub.Clients.All.SendAsync("SongDeleted", songToDelete);
+            SongLogic.Delete(id);
         }
     }
 }
